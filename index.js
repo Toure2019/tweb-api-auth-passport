@@ -1,5 +1,6 @@
 require('dotenv/config');
 const express = require('express');
+const passport = require('passport');
 
 const { port } = require('./config'); // process.env.PORT;
 const api = require('./routes/api');
@@ -8,6 +9,7 @@ const auth = require('./routes/auth');
 const app = express();
 
 app.use(express.json()); // un middle contient du type qu'on envoi : parser les données en json
+app.use(passport.initialize());	// partage la même instance : fonctionne avec des middlewares
 
 app.get('/', (req, res) => {
 	res.send('Server running...');
